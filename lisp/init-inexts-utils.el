@@ -1,4 +1,12 @@
 
+
+(defmacro my-ensure (feature)
+  "Make sure FEATURE is required."
+  `(unless (featurep ,feature)
+     (condition-case nil
+         (require ,feature)
+       (error nil))))
+
 (defvar load-user-customized-major-mode-hook t)
 (defvar cached-normal-file-full-path nil)
 

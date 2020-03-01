@@ -11,6 +11,7 @@
 (require 'init-evil)
 (require 'init-emacs-w3m)
 (require 'init-neotree)
+(require 'init-org-bullets)
 (require 'init-yasnippet)
 (require 'init-csharpmode)
 

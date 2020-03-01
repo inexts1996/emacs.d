@@ -11,7 +11,7 @@
 
  ;; Add Packages
  (defvar my/packages '(
-   ;;evil
+    ace-window
 		evil
     evil-surround
     evil-visualstar
@@ -23,6 +23,7 @@
     evil-find-char-pinyin
     evil-textobj-syntax
     neotree
+    org-bullets
     ranger
     w3m
     yasnippet
