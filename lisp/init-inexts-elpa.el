@@ -11,6 +11,7 @@
 
  ;; Add Packages
  (defvar my/packages '(
+   ;;evil
 		evil
     evil-surround
     evil-visualstar
@@ -21,6 +22,10 @@
     evil-lion
     evil-find-char-pinyin
     evil-textobj-syntax
+    neotree
+    ranger
+    w3m
+    yasnippet
 		) "Default packages")
 
  (setq package-selected-packages my/packages)
