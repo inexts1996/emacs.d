@@ -1,6 +1,5 @@
 ;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
 ;; -*- lexical-binding: t -*-
-
 (setq tab-always-indent 'complete)
 (setq w32-apps-modifier 'super)
 
@@ -34,6 +33,7 @@
 (setq mouse-wheel-progressive-speed nil)
 
 (require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;;(setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
 ;;
 ;;			 ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
@@ -49,8 +49,8 @@
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 
 ;;modeline上显示我的所有的按键和执行的命令
-(package-install 'keycast)
-(keycast-mode-line-mode t)
+;;(package-install 'keycast)
+;;(keycast-mode-line-mode t)
 
 (package-install 'vertico)
 (vertico-mode t)
@@ -69,21 +69,31 @@
 (global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "M-s i") 'consult-imenu)
 
+(package-install 'gruvbox-theme)
+(package-install 'color-theme-sanityinc-tomorrow)
+;;(load-theme 'gruvbox-dark-hard 1)
 (show-paren-mode t)
 (setq company-minimum-prefix-length 1)
-(setq company-idle-delay nil)
+(setq company-idle-delay 0)
+(setq make-backup-files nil)
+(require 'recentf)
+(recentf-mode 1)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(gruvbox-dark-hard))
+ '(custom-safe-themes
+   '("d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))
  '(package-selected-packages
-   '(embark-consult consult embark orderless marginalia vertico keycast company)))
+   '(color-theme-sanityinc-tomorrow gruvbox-theme embark-consult consult embark orderless marginalia vertico keycast company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack Nerd Font Propo" :foundry "outline" :slant normal :weight regular :height 113 :width normal)))))
+ '(default ((t (:family "Hack Nerd Font Mono" :foundry "outline" :slant normal :weight regular :height 113 :width normal)))))
 (put 'upcase-region 'disabled nil)
