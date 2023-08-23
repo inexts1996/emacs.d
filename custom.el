@@ -3,13 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(sanityinc-tomorrow-bright))
+ '(custom-enabled-themes '(gruvbox-glass sanityinc-tomorrow-bright))
  '(custom-safe-themes
-   '("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default))
- '(inhibit-startup-screen t)
+   '("d738f1914c16f245a16fbbd3f7699119bf278f1b34a3f1d8ee2387d0ca1e1c38" "0b6b1a4a576372ba240341912d06fc60e4a5088e51babbafb4252b2cdbf9fa00" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default))
  '(global-display-line-numbers-mode t)
+ '(inhibit-startup-screen t)
+ '(load-theme 'gruvbox-glass t)
  '(package-selected-packages
-   '(consult embark vertico orderless marginalia lsp-mode keycast gruvbox-theme embark-consult company color-theme-sanityinc-tomorrow))
+   '(wgrep consult embark vertico orderless marginalia lsp-mode keycast gruvbox-theme embark-consult company color-theme-sanityinc-tomorrow))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
