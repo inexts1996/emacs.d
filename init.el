@@ -102,3 +102,4 @@
 (global-hl-line-mode t)
 
 (package-install 'wgrep)
+(set-face-background 'line-number-current-line "#2a2c2d")
