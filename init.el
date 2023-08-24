@@ -1,6 +1,6 @@
 ;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
 ;; -*- lexical-binding: t -*-
-
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file)
@@ -26,18 +26,9 @@
 ;;让鼠标滚动更好用
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;;(setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
-;;
-;;			 ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
-(package-initialize)
-
-;;防止反复调用 package-refresh-contents 会影响加载速度
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
+(require 'init-elpa)
+;;(require 'init-packages)
+(require 'init-themes)
 (package-install 'company)
 (global-company-mode 1)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
@@ -102,4 +93,37 @@
 (global-hl-line-mode t)
 
 (package-install 'wgrep)
-(set-face-background 'line-number-current-line "#2a2c2d")
+(setq wgrep-auto-save-buffer t)
+(eval-after-load
+    'consult
+  '(eval-after-load
+       'embark
+     '(progn
+	(require 'embark-consult)
+	(add-hook
+	 'embark-collect-mode-hook
+	 #'consult-preview-at-point-mode))))
+
+(define-key minibuffer-local-map (kbd "C-c C-e") 'embark-export-write)
+
+(define-key minibuffer-local-map (kbd "C-c C-e")'embark-export-write)
+
+;; 配置搜索中文
+(progn
+  (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))
+  (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
+  )
+(eval-after-load 'consult
+  (progn
+    (setq
+     consult-narrow-key "<"
+     consult-line-numbers-widen t
+     consult-async-min-input 2
+     consult-async-refresh-delay  0.15
+     consult-async-input-throttle 0.2
+     consult-async-input-debounce 0.1)
+    ))
+
+(set-face-background 'line-number-current-line "#202020")
+(package-install 'mode-line-bell)
+(mode-line-bell-mode)
