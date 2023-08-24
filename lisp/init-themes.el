@@ -4,7 +4,7 @@
 
 (require-package 'color-theme-sanityinc-solarized)
 (require-package 'color-theme-sanityinc-tomorrow)
-(load "~/.emacs.d/themes/gruvbox-glass-theme.el")
+;;(load "~/.emacs.d/themes/gruvbox-glass-theme.el")
 
 ;; Don't prompt to confirm theme safety. This avoids problems with
 ;; first-time startup on Emacs > 26.3.
@@ -12,7 +12,7 @@
 
 ;; If you don't customize it, this is the theme you get.
 ;;(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
-(setq-default custom-enabled-themes 'gruvbox-glass)
+(setq-default custom-enabled-themes '(gruvbox-glass))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
