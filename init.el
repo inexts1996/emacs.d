@@ -68,9 +68,6 @@
 (global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "M-s i") 'consult-imenu)
 
-(package-install 'gruvbox-theme)
-(package-install 'color-theme-sanityinc-tomorrow)
-;;(load-theme 'gruvbox-dark-hard 1)
 (show-paren-mode t)
 (setq company-minimum-prefix-length 1)
 (setq company-idle-delay 0)
@@ -83,7 +80,6 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
-;;(setq inhibit-startup-screen t)
 
 (progn
   (defvar emax-root (concat (expand-file-name "~") "/emax"))
