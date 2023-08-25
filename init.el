@@ -1,9 +1,24 @@
 ;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
 ;; -*- lexical-binding: t -*-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(let ((minver "26.1"))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+
+(when (version< emacs-version "27.1")
+(message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'emacs-startup-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file)
+
 (setq-default initial-scratch-message
               (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 (setq tab-always-indent 'complete)
@@ -124,6 +139,6 @@
      consult-async-input-debounce 0.1)
     ))
 
-(set-face-background 'line-number-current-line "#202020")
+
 (package-install 'mode-line-bell)
 (mode-line-bell-mode)

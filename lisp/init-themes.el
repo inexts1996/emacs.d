@@ -20,7 +20,9 @@
   (dolist (theme custom-enabled-themes)
     (unless (custom-theme-p theme)
       (load-theme theme)))
-  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes))))
+  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes)))
+(set-face-background 'line-number-current-line "#202020")
+  )
 
 (add-hook 'after-init-hook 'reapply-themes)
 
