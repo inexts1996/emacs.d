@@ -17,7 +17,9 @@
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file)
+  )
 
 (setq-default initial-scratch-message
               (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
