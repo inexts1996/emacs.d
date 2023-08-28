@@ -19,7 +19,7 @@
   "Forcibly load the themes listed in `custom-enabled-themes'."
   (dolist (theme custom-enabled-themes)
     (unless (custom-theme-p theme)
-      (load-theme theme)))
+      (load-theme theme 1)))
   (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes)))
 (set-face-background 'line-number-current-line "#202020")
   )

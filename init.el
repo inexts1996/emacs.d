@@ -117,9 +117,25 @@
 	 'embark-collect-mode-hook
 	 #'consult-preview-at-point-mode))))
 
+(defun embark-export-write ()
+  "Export the current vertico results to a writable buffer if possible.
+Supports exporting consult-grep to wgrep, file to wdeired, and consult-location to occur-edit"
+  (interactive)
+  (require 'embark)
+  (require 'wgrep)
+  (pcase-let ((`(,type . ,candidates)
+               (run-hook-with-args-until-success 'embark-candidate-collectors)))
+    (pcase type
+      ('consult-grep (let ((embark-after-export-hook #'wgrep-change-to-wgrep-mode))
+                       (embark-export)))
+      ('file (let ((embark-after-export-hook #'wdired-change-to-wdired-mode))
+               (embark-export)))
+      ('consult-location (let ((embark-after-export-hook #'occur-edit-mode))
+                           (embark-export)))
+      (x (user-error "embark category %S doesn't support writable export" x)))))
+
 (define-key minibuffer-local-map (kbd "C-c C-e") 'embark-export-write)
 
-(define-key minibuffer-local-map (kbd "C-c C-e")'embark-export-write)
 
 ;; 配置搜索中文
 (progn
@@ -137,6 +153,27 @@
      consult-async-input-debounce 0.1)
     ))
 
+(package-install 'pyim)
+
+(defun eh-orderless-regexp (orig_func component)
+  (let ((result (funcall orig_func component)))
+    (pyim-cregexp-build result)))
+
+
+(defun toggle-chinese-search ()
+  (interactive)
+  (if (not (advice-member-p #'eh-orderless-regexp 'orderless-regexp))
+      (advice-add 'orderless-regexp :around #'eh-orderless-regexp)
+    (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+
+(defun disable-py-search (&optional args)
+  (if (advice-member-p #'eh-orderless-regexp 'orderless-regexp)
+      (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+
+;; (advice-add 'exit-minibuffer :after #'disable-py-search)
+(add-hook 'minibuffer-exit-hook 'disable-py-search)
+
+(global-set-key (kbd "s-p") 'toggle-chinese-search)
 
 (package-install 'mode-line-bell)
 (mode-line-bell-mode)
