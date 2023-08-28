@@ -10,7 +10,7 @@
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(pyim dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq mode-line-bell wgrep consult embark vertico orderless marginalia lsp-mode keycast gruvbox-theme embark-consult company))
+   '(dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq pyim mode-line-bell wgrep consult embark vertico orderless marginalia lsp-mode keycast gruvbox-theme embark-consult company))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

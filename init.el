@@ -177,3 +177,4 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 
 (package-install 'mode-line-bell)
 (mode-line-bell-mode)
+(global-visual-line-mode t)
