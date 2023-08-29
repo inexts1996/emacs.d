@@ -46,6 +46,7 @@
 (require 'init-elpa)
 ;;(require 'init-packages)
 (require 'init-themes)
+(require 'init-org)
 (package-install 'company)
 (global-company-mode 1)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
@@ -178,3 +179,19 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 (package-install 'mode-line-bell)
 (mode-line-bell-mode)
 (global-visual-line-mode t)
+;; 设置英文字体
+(set-face-attribute
+ 'default nil
+ :font (font-spec :name "Hack Nerd Font Mono"
+                  :weight 'normal
+                  :slant 'normal
+                  :size 11.0))
+
+;; 设置中文字体
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font)
+                    charset
+                    (font-spec :name "-outline-微软雅黑-normal-normal-normal-sans-18-*-*-*-p-*-iso8859-1"
+                               :weight 'normal
+                               :slant 'normal
+                               :size 12.0)))
